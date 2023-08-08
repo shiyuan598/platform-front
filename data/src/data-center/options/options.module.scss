@@ -1,0 +1,16 @@
+.container {
+    li {
+        float: left;
+        margin: 0 20px 20px 0;
+    }
+    .label {
+        margin-right: 10px;
+        line-height: 32px;
+    }
+    &::after {
+        content: " ";
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+}

@@ -1,0 +1,21 @@
+.tools {
+    button + button {
+        margin-left: 10px;
+    }
+}
+.info {
+    color: #999;
+}
+.info + .info {
+    margin-left: 10px;
+}
+
+:global(.ant-table-cell) a + a {
+    margin-left: 10px;
+}
+:global(.ant-table-thead) > tr > th {
+ background-color: #1a1a1a;
+}
+:global(.ant-breadcrumb) {
+    margin-bottom: 10px;
+}
