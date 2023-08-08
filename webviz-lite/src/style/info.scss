@@ -1,0 +1,50 @@
+.title-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    display: flex;
+    color: #eee;
+    .logo {
+        height: 48px;
+        flex: 0 0 48px;
+        background: url('../assets/logob.png') -4px -4px no-repeat;
+        transform: scale(0.8);
+    }
+    .title {
+        line-height: 48px;
+        font-size: 24px;
+        font-weight: 700;
+        white-space: pre;
+    }
+}
+.traffic-light {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    width: 4rem;
+    height: 4rem;
+    background: url('../assets/trafficLight.png') top right / contain no-repeat;
+}
+
+.info-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: flex;
+    transform: translateX(-50%);
+    color: #eee;
+
+    .speed {
+        .number {
+            font-size: 3rem;
+        }
+    }
+
+    .time {
+        margin-left: 4px;
+        width: 7rem;
+        font-size: 1.2rem;
+        align-self: center;
+    }
+}

@@ -1,0 +1,112 @@
+{
+    "layout": {
+        "direction": "row",
+        "first": "3D Panel!t9sf9d",
+        "second": {
+            "first": {
+                "first": "CarStatus!2qhr09m",
+                "second": "Plot!dnjol8",
+                "direction": "column",
+                "splitPercentage": 26.666666666666668
+            },
+            "second": "Plot!w8hrki",
+            "direction": "column",
+            "splitPercentage": 69.54887218045113
+        },
+        "splitPercentage": 76.51041666666667
+    },
+    "savedProps": {
+        "3D Panel!t9sf9d": {
+            "checkedKeys": [
+                "name:Topics",
+                "t:/move_base_simple/goal",
+                "t:/tf_static",
+                "t:/zhito2ros/localization",
+                "t:/zhito2ros/localization_array",
+                "t:/zhito2ros/obstacles",
+                "t:/zhito2ros/perception_inner_PrefusedObjects",
+                "t:/zhito2ros/map_path_markers",
+                "t:/zhito2ros/planning_array",
+                "t:/zhito2ros/planning",
+                "t:/zhito2ros/prediction",
+                "t:/zhito2ros/zhitopath",
+                "t:/tf",
+                "t:/zhito2ros/pointcloud2"
+            ],
+            "expandedKeys": [
+                "name:Topics",
+                "t:/tf"
+            ],
+            "followTf": "novatel",
+            "cameraState": {
+                "distance": 57.618717835617346,
+                "perspective": true,
+                "phi": 1.0707273186487907,
+                "targetOffset": [
+                    -10.699883189037179,
+                    8.075193471733822,
+                    0
+                ],
+                "thetaOffset": -0.4880708929788687,
+                "fovy": 0.7853981633974483,
+                "near": 0.01,
+                "far": 5000
+            },
+            "modifiedNamespaceTopics": [
+                "/metadata"
+            ],
+            "pinTopics": false,
+            "settingsByKey": {
+                "t:/zhito2ros/pointcloud2": {
+                    "colorMode": {
+                        "mode": "rainbow",
+                        "colorField": "x"
+                    }
+                }
+            },
+            "autoSyncCameraState": false,
+            "autoTextBackgroundColor": true,
+            "followOrientation": true
+        },
+        "Plot!dnjol8": {
+            "paths": [
+                {
+                    "value": "/zhito2ros/canbus/chassis.speed_mps.@mps2mph",
+                    "enabled": true,
+                    "timestampMethod": "receiveTime"
+                }
+            ],
+            "minYValue": "",
+            "maxYValue": "",
+            "showLegend": true,
+            "xAxisVal": "timestamp"
+        },
+        "Plot!w8hrki": {
+            "paths": [
+                {
+                    "value": "/zhito2ros/canbus/chassis.steering_percentage",
+                    "enabled": true,
+                    "timestampMethod": "receiveTime"
+                },
+                {
+                    "value": "",
+                    "enabled": true,
+                    "timestampMethod": "receiveTime"
+                }
+            ],
+            "minYValue": "",
+            "maxYValue": "",
+            "showLegend": true,
+            "xAxisVal": "timestamp"
+        }
+    },
+    "globalVariables": {},
+    "userNodes": {},
+    "linkedGlobalVariables": [],
+    "playbackConfig": {
+        "speed": 0.2,
+        "messageOrder": "receiveTime",
+        "timeDisplayMethod": "ROS"
+    },
+    "version": 19
+}

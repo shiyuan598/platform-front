@@ -1,0 +1,9 @@
+{
+    "name": "@zhito/proto",
+    "version": "1.0.0",
+    "types": "index.d.ts",
+    "main": "index.js",
+    "dependencies": {
+        "protobufjs":"6.11.2"
+    }
+}

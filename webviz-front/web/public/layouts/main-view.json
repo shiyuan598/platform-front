@@ -1,0 +1,148 @@
+{
+  "layout": {
+    "direction": "row",
+    "first": "3D Panel!2clx10v",
+    "second": {
+      "first": "Tab!30fsoou",
+      "second": {
+        "first": "Tab!23bg78s",
+        "second": "Tab!3p8k1ff",
+        "direction": "column"
+      },
+      "direction": "column",
+      "splitPercentage": 23.23733862959285
+    },
+    "splitPercentage": 66.78573367352479
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "linkedGlobalVariables": [],
+  "playbackConfig": {
+    "speed": 1,
+    "messageOrder": "receiveTime",
+    "timeDisplayMethod": "ROS"
+  },
+  "version": 19,
+  "configById": {
+    "CarStatus Panel!f031se": {},
+    "AdmStatus Panel!uk5khr": {},
+    "RawMessages!o4eh7j": {
+      "topicPath": "/zhito/perception/obstacles",
+      "diffTopicPath": "",
+      "diffMethod": "custom",
+      "diffEnabled": false,
+      "showFullMessageForDiff": false
+    },
+    "ImageViewPanel!i4skpe": {
+      "pan": {
+        "x": 1,
+        "y": 1
+      },
+      "zoom": 1,
+      "cameraTopic": "/zhito/sensor/camera/c5_front_left_60/image/compressed",
+      "enabledMarkerTopics": [],
+      "customMarkerTopicOptions": [],
+      "transformMarkers": true,
+      "synchronize": false,
+      "mode": "fit",
+      "zoomPercentage": 0.01,
+      "rotation": 0
+    },
+    "map!zftzuj": {
+      "disabledTopics": [],
+      "zoomLevel": 16
+    },
+    "Routing Panel!4bbf6jt": {},
+    "LocStatus Panel!2o7rd3n": {},
+    "3D Panel!2clx10v": {
+      "checkedKeys": [
+        "name:Topics",
+        "t:/zhito2ros/map_path_markers",
+        "t:/zhito2ros/localization",
+        "t:/zhito2ros/obstacles",
+        "t:/zhito2ros/pointcloud2",
+        "t:/zhito2ros/prediction",
+        "t:/zhito2ros/zhitopath",
+        "t:/zhito/adc",
+        "t:/zhito/prediction/perception_obstacles",
+        "t:/zhito/localization/pose/marker",
+        "t:/zhito/zloc/view/forward_map",
+        "t:/zhito/zmap_msg",
+        "t:/zhito/prediction",
+        "t:/zhito/perception/obstacles",
+        "t:/zhito/planning"
+      ],
+      "followTf": "novatel",
+      "followOrientation": false,
+      "cameraState": {
+        "targetOffset": [
+          0,
+          0,
+          0
+        ],
+        "distance": 23.5117334941431,
+        "perspective": true,
+        "phi": 1.0429878653915072,
+        "thetaOffset": -0.1964379695787784,
+        "fovy": 0.7853981633974483,
+        "near": 0.01,
+        "far": 5000
+      },
+      "autoTextBackgroundColor": false,
+      "useThemeBackgroundColor": false,
+      "customBackgroundColor": "#011942",
+      "settingsByKey": {},
+      "expandedKeys": [
+        "name:Topics",
+        "t:/tf",
+        "t:/zhito/prediction"
+      ],
+      "pinTopics": false,
+      "flattenMarkers": true,
+      "followMode": "follow"
+    },
+    "Tab!30fsoou": {
+      "activeTabIdx": 0,
+      "tabs": [
+        {
+          "title": "车辆状态",
+          "layout": "CarStatus Panel!f031se"
+        },
+        {
+          "title": "设备状态",
+          "layout": "AdmStatus Panel!uk5khr"
+        }
+      ]
+    },
+    "Tab!23bg78s": {
+      "activeTabIdx": 0,
+      "tabs": [
+        {
+          "title": "原始消息",
+          "layout": "RawMessages!o4eh7j"
+        },
+        {
+          "title": "图像",
+          "layout": "ImageViewPanel!i4skpe"
+        }
+      ]
+    },
+    "Tab!3p8k1ff": {
+      "activeTabIdx": 0,
+      "tabs": [
+        {
+          "title": "地图",
+          "layout": "map!zftzuj"
+        },
+        {
+          "title": "路线",
+          "layout": "Routing Panel!4bbf6jt"
+        },
+        {
+          "title": "定位状态",
+          "layout": "LocStatus Panel!2o7rd3n"
+        }
+      ]
+    }
+  }
+}

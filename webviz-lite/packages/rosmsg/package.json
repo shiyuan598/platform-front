@@ -1,0 +1,72 @@
+{
+  "name": "@foxglove/rosmsg",
+  "version": "3.0.0",
+  "description": "ROS1 and ROS2 message definition parser",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foxglove/rosmsg.git"
+  },
+  "keywords": [
+    "ros",
+    "ros1",
+    "ros2",
+    "message",
+    "definition",
+    "msg",
+    "srv",
+    "msgdef",
+    "idl",
+    "parser",
+    "grammar"
+  ],
+  "author": {
+    "name": "Foxglove Technologies Inc",
+    "email": "contact@foxglove.dev"
+  },
+  "homepage": "https://github.com/foxglove/rosmsg",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "lint:ci": "eslint --report-unused-disable-directives .",
+    "lint": "eslint --report-unused-disable-directives --fix .",
+    "prepack": "yarn build",
+    "prepublishOnly": "yarn lint:ci && yarn test",
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">= 14"
+  },
+  "dependencies": {
+    "md5-typescript": "^1.0.5"
+  },
+  "devDependencies": {
+    "@foxglove/eslint-plugin": "0.14.0",
+    "@types/jest": "^27.0.1",
+    "@types/nearley": "^2.11.2",
+    "@typescript-eslint/eslint-plugin": "4.29.2",
+    "@typescript-eslint/parser": "4.29.2",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-es": "4.1.0",
+    "eslint-plugin-filenames": "1.3.2",
+    "eslint-plugin-import": "2.24.0",
+    "eslint-plugin-jest": "24.4.0",
+    "eslint-plugin-prettier": "3.4.0",
+    "jest": "27.0.6",
+    "moo": "0.5.1",
+    "nearley": "2.20.1",
+    "nearley-loader": "2.0.0",
+    "prettier": "2.3.2",
+    "ts-jest": "^27.0.5",
+    "ts-loader": "9.2.5",
+    "typescript": "4.3.5",
+    "webpack": "5.51.1",
+    "webpack-cli": "4.8.0"
+  }
+}

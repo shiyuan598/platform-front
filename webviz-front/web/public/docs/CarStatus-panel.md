@@ -1,0 +1,1 @@
+![image-20211231181046956](CarStatus-panel.assets/image-20211231181046956.png)

@@ -1,0 +1,72 @@
+@import "../../../style/index.scss";
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tools {
+    margin-bottom: 16px;
+    display: flex;
+
+    button+button {
+        margin-left: 14px;
+    }
+
+    .label {
+        line-height: 30px;
+        font-size: 14px;
+        padding-right: 4px;
+    }
+}
+
+.main {
+    height: calc(100% - 200px);
+    display: flex;
+    flex: 1;
+
+    &>div {
+        border-radius: 2px;
+        background-color: rgb(20, 20, 20);
+    }
+
+    h4 {
+        font-size: 16px;
+        padding-left: 12px;
+        margin: 8px 0;
+    }
+
+    .left {
+        flex: 0 0 150px;
+    }
+
+    .right {
+        flex: 0 0 540px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .content {
+        flex: 1 1 600px;
+        margin: 0 14px;
+        overflow: auto;
+    }
+
+    ul>li {
+        line-height: 40px;
+        padding: 0 8px;
+        cursor: pointer;
+
+        &:hover,
+        &.active {
+            color: #177ddc;
+        }
+
+        &.active {
+            background-color: rgb(17, 27, 38);
+        }
+
+        transition: all 0.3s;
+    }
+}

@@ -1,0 +1,194 @@
+{
+  "mode": "L3",
+  "status": [
+      {
+          "topic": "/zhito/adm/AdmInfoMCU2SOC",
+          "title": "ADM状态",
+          "items": [
+              {
+                  "key": "MainADMission",
+                  "display": "主任务",
+                  "mapping": {
+                      "0": "无任务",
+                      "1": "全任务巡航",
+                      "2": "降级保护等级1",
+                      "3": "降级保护等级2",
+                      "4": "降级保护等级3",
+                      "5": "降级保护等级4",
+                      "6": "降级保护等级5",
+                      "7": "iACC巡航",
+                      "254": "SP Error"
+                  }
+              },
+              {
+                  "key": "CurrentADMission",
+                  "display": "当前任务",
+                  "mapping": {
+                      "0": "无任务",
+                      "1": "巡航",
+                      "2": "左环道",
+                      "3": "右换道",
+                      "4": "变道取消",
+                      "5": "巡航无变道",
+                      "6": "受限制的巡航",
+                      "7": "本车道停车",
+                      "8": "紧急停车",
+                      "9": "系统紧急停车"
+                  }
+              }
+          ]
+      },
+      {
+          "topic": "/zhito/adm/ControlDebugMCU2SOC",
+          "title": "控制状态",
+          "items": [
+              {
+                  "key": "longctrl_brakereqd",
+                  "display": "刹车状态",
+                  "mapping": {
+                      "false": "未触发",
+                      "true": "已触发"
+                  },
+                  "colorMapping": {
+                      "false": "white",
+                      "true": "red"
+                  }
+              }
+          ]
+      },
+      {
+          "topic": "/webviz/zic/offset",
+          "title": "ZIC车道线",
+          "items": [
+              {
+                  "key": "data",
+                  "display": "车道偏离"
+              }
+          ]
+      },
+      {
+          "topic": "/webviz/loc/offset",
+          "title": "Loc车道线",
+          "items": [
+              {
+                  "key": "data",
+                  "display": "车道偏离"
+              }
+          ]
+      },
+      {
+          "topic": "/zhito/adm/PlanningStatus",
+          "title": "规划状态",
+          "items": [
+              {
+                  "key": "CurrentADMission",
+                  "display": "当前任务",
+                  "mapping": {
+                      "2": "左换道",
+                      "3": "右换道",
+                      "4": "取消换道",
+                      "default": ""
+                  }
+              },
+              {
+                  "key": "LaneChangeCondition",
+                  "display": "换道条件",
+                  "mapping": {
+                      "0": "-",
+                      "1": "可左换道",
+                      "2": "可右换道",
+                      "3": "可左/右换道",
+                      "4": "目标车道轨迹准备中",
+                      "5": "目标车道安全检查中",
+                      "6": "隧道不可换",
+                      "7": "桥梁不可换",
+                      "8": "汇流不可换",
+                      "9": "车道剩余距离不够不可换",
+                      "10": "车道线实线不可换",
+                      "11": "碰撞风险不可换",
+                      "12": "侧后向感知启动中",
+                      "13": "道路曲率过大不可换",
+                      "14": "非全功能状态不可换",
+                      "15": "人工取消换道",
+                      "16": "汇入车道不可换",
+                      "17": "汇出车道不可换",
+                      "18": "匝道不可换",
+                      "19": "断头路不可换",
+                      "20": "非可换道车速不可换",
+                      "253": "ADM换道状态错误",
+                      "254": "换道请求超时",
+                      "default": "-"
+                  },
+                  "colorMapping": {
+                      "0": "white",
+                      "1": "green",
+                      "2": "green",
+                      "3": "green",
+                      "4": "yellow",
+                      "5": "yellow",
+                      "6": "red",
+                      "7": "red",
+                      "8": "red",
+                      "9": "red",
+                      "10": "red",
+                      "11": "red",
+                      "12": "yellow",
+                      "13": "red",
+                      "14": "red",
+                      "15": "red",
+                      "16": "red",
+                      "17": "red",
+                      "18": "red",
+                      "19": "red",
+                      "20": "red",
+                      "253": "red",
+                      "254": "red",
+                      "default": "white"
+                  }
+              },
+              {
+                  "key": "TakeOver_LaneChange",
+                  "display": "接管状态",
+                  "mapping": {
+                      "0": "-",
+                      "1": "需接管",
+                      "2": "无需接管"
+                  },
+                  "colorMapping": {
+                      "0": "white",
+                      "1": "red",
+                      "2": "green"
+                  }
+              }
+          ]
+      },
+      {
+          "topic": "/webviz/lane",
+          "title": "当前车道",
+          "items": [
+              {
+                  "key": "eval::Math.floor(data.speed_limit*3.6).toFixed(0)",
+                  "display": "限速"
+              },
+              {
+                  "key": "eval::data.type",
+                  "display": "车道类型"
+              },
+              {
+                  "key": "eval::data.connection_type",
+                  "display": "连接类型"
+              }
+          ]
+      },
+      {
+          "topic": "/zhito/canbus/chassis",
+          "title": "底盘状态",
+          "items": [
+              {
+                  "key": "speed_mps",
+                  "display": "车速(m/s)"
+              }
+          ]
+      }
+  ]
+}

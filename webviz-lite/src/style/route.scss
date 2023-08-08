@@ -1,0 +1,106 @@
+.route-container {
+    $fontColor: #eee;
+    $activeFontColor: #177ddc;
+    $bgColor: #141414;
+    $activeBgColor: #111B26;
+
+    @mixin bordered {
+        border: 1px solid #303030;
+        border-radius: 2px;
+    }
+
+    @mixin active {
+        color: $activeFontColor;
+        background-color: $activeBgColor;
+    }
+
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 13px;
+    color: $fontColor;
+
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        margin-bottom: 10px;
+        transition: all 1s ease-in-out;
+        background-color: $bgColor;
+        @include bordered;
+
+        li {
+            padding: 3px 5px;
+            cursor: pointer;
+        }
+
+        li.active,
+        li:hover {
+            @include active;
+        }
+
+        max-height: 30vh;
+        overflow: auto;
+
+        /* 滚动条 */
+        &::-webkit-scrollbar {
+            height: 6px;
+            background-color: #3a3a3a;
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            -moz-border-radius: 1px;
+            -webkit-border-radius: 1px;
+            border-radius: 1px;
+            background-color: #2a2a2a;
+        }
+    }
+
+    ul.hide {
+        visibility: hidden;
+        opacity: 0;
+        // transform: scaleY(0);
+        // transform-origin: right bottom;
+        transition: all 0.3s ease-in-out;
+    }
+
+    ul.show {
+        visibility: visible;
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .switch-btn {
+        @include bordered;
+        &:hover {
+            @include active;
+        }
+        float: right;
+        width: 100px;
+        padding: 3px;
+        cursor: pointer;
+        font-weight: 600;
+        text-align: center;
+        
+        .icon {
+            transition: all 0.3s ease-in-out;
+            vertical-align: middle;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: url("../assets/down.png") 0 / contain;
+        }
+    }
+    .open {
+        @include active;
+        .icon {
+            transition: all 0.5s ease-in-out;
+            transform: rotate(-180deg);
+        }
+    }
+}

@@ -1,0 +1,70 @@
+@import "~antd/dist/antd.dark.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Default font size */
+.custom-progress .ant-progress-inner {
+    font-size: 16px;
+}
+
+/* Adjust font size for small screens */
+@media screen and (max-width: 576px) {
+    .custom-progress .ant-progress-inner {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 12px !important;
+    }
+}
+
+/* Adjust font size for medium screens */
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    .custom-progress .ant-progress-inner {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 12px !important;
+    }
+}
+
+/* Adjust font size for large screens */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .custom-progress .ant-progress-inner {
+        width: 80px !important;
+        height: 80px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Adjust font size for extra large screens */
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .custom-progress .ant-progress-inner {
+        width: 100px !important;
+        height: 100px !important;
+        font-size: 20px !important;
+    }
+}
+
+/* Adjust font size for larger screens (greater than 1200px) */
+@media screen and (min-width: 1200px) {
+    .custom-progress .ant-progress-inner {
+        width: 120px !important;
+        height: 120px !important;
+        font-size: 24px !important;
+    }
+}
+
+/* 滚动条 */
+*::-webkit-scrollbar {
+    height: 6px;
+    background-color: #2a2a2a;
+    width: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    background-color: #3a3a3a;
+}

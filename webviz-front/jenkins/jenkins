@@ -1,0 +1,153 @@
+
+
+pipeline {
+    agent {
+        label "zhito-docker-slave"
+    }
+
+    environment {
+        linux_out_dir = 'linux_out'
+        linux_build_dir = 'linux_build'
+        linux_platform = 'X86'
+        qnx_platform = 'V3NA'
+        qnx_out_dir = 'qnx_out'
+        qnx_build_dir = 'qnx_build'
+        type = 'Release'
+        project = 'map'
+        version = '1.0.0'
+    }
+
+    stages {
+        stage('construct build info') {
+             steps {
+                rtBuildInfo (
+                    captureEnv: true
+                )
+            }
+        }
+
+
+        stage('install nodejs') {
+            steps{
+                sh './scripts/install_nodejs.sh'
+            }
+        }
+
+        stage('download code') {
+            steps{
+                git branch: 'master', credentialsId: 'xuhuijun', url: 'https://gitlab.zhito.com/xuhuijun/zhitov.git'
+            }
+        }
+
+        stage('fetch thirdparty lib') {
+            steps {
+                DownloadModuleLib('common', '${linux_platform}')
+                DownloadModuleLib('message_group', '${linux_platform}')
+                DownloadLib('glog', '${linux_platform}')
+                DownloadLib('gtest', '${linux_platform}')
+                DownloadLib('gflags', '${linux_platform}')
+                DownloadLib('tinyxml2', '${linux_platform}')
+                DownloadLib('eigen', '${linux_platform}')
+                DownloadLib('cyber', '${linux_platform}')
+                DownloadLib('protobuf', '${linux_platform}')
+                DownloadLib('absl', '${linux_platform}')
+
+                DownloadModuleLib('common', '${qnx_platform}')
+                DownloadModuleLib('message_group', '${qnx_platform}')
+                DownloadLib('glog', '${qnx_platform}')
+                DownloadLib('gtest', '${qnx_platform}')
+                DownloadLib('gflags', '${qnx_platform}')
+                DownloadLib('tinyxml2', '${qnx_platform}')
+                DownloadLib('eigen', '${qnx_platform}')
+                DownloadLib('cyber', '${qnx_platform}')
+                DownloadLib('protobuf', '${qnx_platform}')
+                DownloadLib('absl', '${qnx_platform}')
+            }
+        }
+
+        stage('pre build') {
+            steps {
+                sh 'ls -l thirdparty'
+                sh 'cd thirdparty/${linux_platform} && ls *.tar.gz | xargs -n1 tar -xf && ls -l include'
+                sh 'cd thirdparty/${qnx_platform} && ls *.tar.gz | xargs -n1 tar -xf && ls -l include'
+                sh 'chmod -R +x thirdparty/${linux_platform}/bin && mkdir -p ${linux_build_dir} ${qnx_build_dir}'
+            }
+        }
+
+        stage("build linux") {
+            steps {
+                sh '''cd ${linux_build_dir} && \
+                    cmake -DCMAKE_BUILD_TYPE=${type} \
+                    -DBUILD_SHARED_LIBS=ON \
+                    -DTHIRDPARTY_DIR=$(pwd)/../thirdparty/${linux_platform} \
+                    -DPROTOC_DIR=$(pwd)/../thirdparty/${linux_platform} \
+                    -DCMAKE_INSTALL_PREFIX=../${linux_out_dir} ../jenkins/'''
+                sh 'cd ${linux_build_dir} && wget https://sonarqube.zhito.com/static/cpp/build-wrapper-linux-x86.zip && unzip build-wrapper-linux-x86.zip'
+                sh 'cd ${linux_build_dir} && build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir ../bw-output make -j$(nproc) && make -j$(nproc)'
+                sh 'cd ${linux_build_dir} && make install && make package'
+            }
+        }
+
+        stage('build qnx') {
+            steps {
+                sh '''cd ${qnx_build_dir} && \
+                    source /home/zhito/qnx_env/qnx700/qnxsdp-env.sh && \
+                    cmake -DCMAKE_TOOLCHAIN_FILE=/home/zhito/qnx_env/cmake/qnx_aarch64.cmake \
+                    -DCMAKE_BUILD_TYPE=${type} \
+                    -DBUILD_SHARED_LIBS=ON \
+                    -DTHIRDPARTY_DIR=$(pwd)/../thirdparty/${qnx_platform} \
+                    -DPROTOC_DIR=$(pwd)/../thirdparty/${linux_platform} \
+                    -DCMAKE_INSTALL_PREFIX=../${qnx_out_dir} ../jenkins/ && \
+                    make -j$(nproc)'''
+                sh 'cd ${qnx_build_dir} && make install && make package'
+            }
+        }
+        stage('analysis'){
+            steps{
+                script {
+                    def sonarHome = tool name: 'sonarqube-scanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv('sonarqube') {
+                        sh "${sonarHome}/bin/sonar-scanner " +
+                        "-Dsonar.projectKey=map " +
+                        "-Dsonar.projectName=${env.JOB_NAME} " +
+                        "-Dsonar.cfamily.build-wrapper-output=bw-output " +
+                        "-Dsonar.exclusions=${linux_build_dir}/**,${qnx_out_dir}/**,${qnx_build_dir}/**,thirdparty/**,jenkins/**,${linux_out_dir}/**,doc/**,data/**,pack/**,**/*test.cc " +
+                        "-Dsonar.cfamily.threads=16 "
+                    }
+                }
+            }
+        }
+
+        stage ('upload') {
+            steps {
+                rtUpload (
+                    serverId: 'artifactory',
+                    spec: '''{
+                        "files": [
+                            {
+                            "pattern": "pack/Linux/${project}-*.tar.gz",
+                            "target": "zhito-dev-local/${project}/${linux_platform}/",
+                            "props": "version=${version};module=${project}"
+                            }
+                        ]
+                    }'''
+                )
+                rtUpload (
+                    serverId: 'artifactory',
+                    spec: '''{
+                        "files": [
+                            {
+                            "pattern": "pack/QNX/${project}-*.tar.gz",
+                            "target": "zhito-dev-local/${project}/${qnx_platform}/",
+                            "props": "version=${version};module=${project}"
+                            }
+                        ]
+                    }'''
+                )
+                rtPublishBuildInfo (
+                    serverId: 'artifactory'
+                )
+            }
+        }
+    }
+}

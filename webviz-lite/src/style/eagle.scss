@@ -1,0 +1,74 @@
+.map-container {
+    position: fixed !important;
+    left: 20px;
+    bottom: 20px;
+    min-width: 200px;
+    min-width: 200px;
+    height: 25vw;
+    width: 25vw;
+    border-radius: 50%;
+    border: 2px solid #303030;
+    background-color: #101010;
+}
+
+/* 隐藏鹰眼图logo */
+.minemap-ctrl-bottom-left .minemap-ctrl {
+    display: none !important;
+}
+
+.map-animation-marker {
+    background-position: center center;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-animation-marker p {
+    background-color: rgba(250, 0, 0, 0.3);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: mapAnimationMarker 1.5s infinite;
+    box-shadow: 0px 0px 2px #f00;
+}
+
+.map-animation-marker div {
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f00;
+    border-radius: 50%;
+}
+
+@keyframes mapAnimationMarker {
+    10% {
+        transform: scale(1.2);
+    }
+
+    20% {
+        transform: scale(1.6);
+    }
+
+    40% {
+        transform: scale(2);
+    }
+
+    60% {
+        transform: scale(3);
+    }
+
+    80% {
+        transform: scale(4);
+    }
+
+    100% {
+        transform: scale(5);
+    }
+}

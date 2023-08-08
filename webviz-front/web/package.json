@@ -1,0 +1,13 @@
+{
+  "name": "web",
+  "private": true,
+  "dependencies": {
+    "@foxglove/studio-base": "workspace:*",
+    "@sentry/browser": "latest"
+  },
+  "devDependencies": {
+    "@types/copy-webpack-plugin": "10.1.0",
+    "copy-webpack-plugin": "10.2.0",
+    "webpack": "5.65.0"
+  }
+}

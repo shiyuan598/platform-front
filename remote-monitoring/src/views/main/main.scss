@@ -1,0 +1,226 @@
+$colorNormal: #fff;
+$colorActive: #447ed9;
+
+@mixin active {
+    color: $colorNormal;
+    background-color: $colorActive;
+}
+
+@mixin disable {
+    color: $colorNormal;
+    background-color: #989898;
+}
+
+@mixin bordered {
+    border: 1px solid #eee;
+}
+
+@mixin ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card-container {
+    display: flex;
+    background-color: $colorNormal;
+
+    .card {
+        flex: 1 0;
+        min-height: 150px;
+        padding: 25px 30px;
+        @include bordered;
+
+        .main-text {
+            font-size: 30px;
+            font-weight: 700;
+            white-space: nowrap;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .sub-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .text {
+            font-size: 13px;
+            height: 20px;
+            line-height: 20px;
+            white-space: nowrap;
+        }
+    }
+
+    .card+.card {
+        border-left: 0;
+    }
+}
+
+.tabs {
+    .tab {
+        float: left;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        width: 150px;
+        text-align: center;
+        padding: 0 8px;
+        @include ellipsis;
+        @include bordered;
+        border-top: 0;
+        border-bottom: 0;
+        background-color: #f9f9f9;
+        cursor: pointer;
+    }
+
+    .tab.top {
+        @include bordered;
+        border-bottom: 0;
+    }
+
+    .tab+.tab {
+        border-left: 0;
+    }
+
+    .tab:not(.active) {
+        &:hover {
+            color: $colorActive;
+        }
+    }
+
+    .tab.select {
+        border: 0;
+        float: right;
+        width: initial;
+    }
+
+    .active {
+        @include active;
+    }
+}
+
+.category {
+    height: 20px;
+    line-height: 20px;
+    padding-left: 8px;
+    border-left: 4px solid #555;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.info {
+    margin-top: 3px;
+    min-height: 40px;
+    line-height: 40px;
+    padding-left: 25px;
+    font-size: 14px;
+    @include ellipsis;
+}
+
+.info.active {
+    @include active;
+}
+
+.info.disable {
+    @include disable;
+}
+
+.statis-container {
+    min-height: calc(100% - 40px * 3 - 150px - 3px);
+    padding: 15px 20px 30px;
+    @include bordered;
+    background-color: $colorNormal;
+
+    .text {
+        font-size: 13px;
+        margin: 15px 10px 30px;
+    }
+}
+
+// 车辆监控
+.vehicle-status {
+    .status {
+        height: 150px;
+        display: flex;
+        align-items: center;
+
+        .items {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: -4px;
+            margin-left: 30px;
+            cursor: pointer;
+            max-height: 100px;
+            overflow: auto;
+
+            .item {
+                margin-right: 20px;
+                margin-bottom: 4px;
+                border-radius: 2px;
+                padding: 0 5px;
+                background-color: #f5f6f9;
+            }
+        }
+    }
+}
+
+.map-container {
+    height: calc(100% - 40px - 150px);
+    padding: 5px 20px 0;
+    position: relative;
+
+    .top-bar {
+        margin: 9px 0 0 6px;
+        position: absolute;
+        z-index: 100;
+
+        .vehicle-number-select {
+            margin-right: 20px;
+        }
+
+        .time {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 16px;
+            background-color: #fff;
+            color: #555;
+            box-shadow: 2px 2px 4px #989898;
+        }
+    }
+
+    #map {
+        height: 100%;
+    }
+
+    // 修改map popup样式
+    .minemap-popup-content {
+        padding: 1px 8px 0;
+        font-size: 14px;
+        color: #101010;
+        box-shadow: 1px 1px 4px rgb(0 0 0 / 30%);
+    }
+}
+
+// 行驶数据
+.card-container .text {
+    img {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+.chart {
+    height: 380px;
+}
+
+// 异常信息
+
+// 车辆管理
+.form-container {
+    padding: 25px 20px;
+    @include bordered;
+    background-color: #fff;
+}

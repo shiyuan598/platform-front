@@ -1,0 +1,28 @@
+.sidebar {
+    flex: 0 0 240px;
+    border: 1px solid #eee;
+    border-left: 0;
+    border-bottom: 0;
+    background-color: #fff;
+    padding: 25px;
+}
+.menu {
+    margin: 3px 0;
+    padding: 8px 5px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover {
+        background-color: #edf3ff;
+    }
+}
+.menu.active {
+    color: #3370ff;
+}
+.submenu {
+    font-size: 12px;
+    padding-left: 2em;
+}
+.submenu + .submenu {
+    margin-top: 10px;
+}

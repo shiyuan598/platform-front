@@ -1,0 +1,268 @@
+[{
+  "topic": "/zhito/adm/LMStatus",
+  "title": "ZlocStatus",
+  "items": [
+        {
+          "key": "ZlocStatus",
+          "display": "ZLoc状态",
+          "length": 32,
+          "mapping": {
+            "0": {
+              "key": "LOC_WORK_NORMAL",
+              "description": "定位工作状态",
+              "0": "不正常工作",
+              "1": "正常工作"
+            },
+            "1": {
+              "key": "GNSS_JION",
+              "description": "GNSS接入状态",
+              "0": "GNSS未接入",
+              "1": "GNSS接入"
+            },
+            "2": {
+              "key": "GNSS_RELIABLE",
+              "description": "GNSS值状态",
+              "0": "GNSS连续严重野值",
+              "1": "GNSS值正常"
+            },
+            "3": {
+              "key": "GNSS_RTK_FIXED",
+              "description": "GNSS固定解状态",
+              "0": "GNSS定位长时间未固定",
+              "1": "GNSS固定解状态正常"
+            },
+            "4": {
+              "key": "IMU_JION",
+              "description": "IMU接入状态",
+              "0": "IMU未接入",
+              "1": "IMU接入"
+            },
+            "5": {
+              "key": "IMU_TIME_STABLE",
+              "description": "IMU丢帧情况",
+              "0": "IMU严重丢帧",
+              "1": "IMU丢帧状态正常"
+            },
+            "6": {
+              "key": "IMU_ORIENTATION",
+              "description": "IMU朝向状态",
+              "0": "IMU朝向异常",
+              "1": "IMU朝向正常"
+            },
+            "7": {
+              "key": "CHASSIS_JION",
+              "description": "ChassisWheel接入状态",
+              "0": "ChassisWheel未接入",
+              "1": "ChassisWheel接入"
+            },
+            "8": {
+              "key": "CHASSIS_UPDATE",
+              "description": "ChassisWheel速度更新状态",
+              "0": "ChassisWheel速度不更新",
+              "1": "ChassisWheel速度有更新"
+            },
+            "9": {
+              "key": "CHASSIS_RELIABLE",
+              "description": "ChassisWheel超限状态",
+              "0": "ChassisWheel超限",
+              "1": "ChassisWheel未超限"
+            },
+            "10": {
+              "key": "PERCEPTION_JION",
+              "description": "视觉感知接入状态",
+              "0": "视觉感知未接入",
+              "1": "视觉感知接入"
+            },
+            "11": {
+              "key": "PERCEPTION_TIME_STABLE",
+              "description": "视觉感知结果时间戳状态",
+              "0": "视觉感知结果时间戳异常",
+              "1": "视觉感知结果时间戳正常"
+            },
+            "12": {
+              "key": "PERCEPTION_RESULT_RELIABLE",
+              "description": "视觉感知结果状态",
+              "0": "视觉感知结果存在飞点",
+              "1": "视觉感知结果不存在飞点"
+            },
+            "13": {
+              "key": "MAP_JION",
+              "description": "地图接入状态",
+              "0": "地图未接入",
+              "1": "地图接入"
+            },
+            "14": {
+              "key": "MAP_PERCEPTION_MATCH",
+              "description": "地图和视觉感知匹配情况",
+              "0": "地图和视觉感知匹配存在严重冲突",
+              "1": "地图和视觉感知匹配正常"
+            },
+            "15": {
+              "key": "IMU_ONLINE_CALIBRATION",
+              "description": "IMU与车体在线标定状态",
+              "0": "异常",
+              "1": "正常"
+            },
+            "16": {
+              "key": "CAMERA_ONLINE_CALIBRATION",
+              "description": "相机与IMU在线标定状态",
+              "0": "异常",
+              "1": "正常"
+            },
+            "17": {
+              "key": "PREDICT_POS_JUMP",
+              "description": "位置跳变情况",
+              "0": "有跳变",
+              "1": "无跳变"
+            },
+            "18": {
+              "key": "PREDICT_ATTITUDE_JUMP",
+              "description": "姿态跳变情况",
+              "0": "有跳变",
+              "1": "无跳变"
+            },
+            "19": {
+              "key": "PREDICT_VEL_JUMP",
+              "description": "速度跳变情况",
+              "0": "有跳变",
+              "1": "无跳变"
+            },
+            "20": {
+              "key": "GNSS_DELAY",
+              "description": "GNSS延时状态",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "21": {
+              "key": "IMU_DELAY",
+              "description": "IMU延时状态",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "22": {
+              "key": "CHASSIS_DELAY",
+              "description": "Chassis延时状态",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "23": {
+              "key": "PERCEPTION_DEALY",
+              "description": "视觉感知延时状态",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "26": {
+              "key": "LOC_DELAY_ABNORMAL",
+              "description": "定位延时异常",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "27": {
+              "key": "LANE_KEEPING_ABNORMAL",
+              "description": "车道保持异常",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "28": {
+              "key": "FUSE_STATUS_ABNORAML",
+              "description": "融合状态异常",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "29": {
+              "key": "VEHICLE_ATTITUDE_ABNORMAL",
+              "description": "车体姿态超限",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "30": {
+              "key": "IMU_ATTITUDE_ABNORMAL",
+              "description": "IMU姿态超限",
+              "0": "不正常",
+              "1": "正常"
+            },
+            "31": {
+              "key": "IMU_LOSS_ABNORMAL",
+              "description": "IMU丢帧超1s",
+              "0": "不正常",
+              "1": "正常"
+            }
+          },
+          "statuMapping": {
+            "1": true,
+            "0": false
+          }
+        }
+  ]
+},{
+  "topic": "/zhito/adm/LMStatus",
+  "title": "ZmapStatus",
+  "items": [
+      {
+          "key": "ZmapStatus",
+          "display": "Zmap状态",
+          "length": 32,
+          "mapping": {
+            "0": {
+              "key": "Working",
+              "description": "地图工作状态",
+              "0": "不正常工作",
+              "1": "正常工作"
+            },
+            "1": {
+              "key": "EngineStatus",
+              "description": "引擎工作状态",
+              "0": "不正常工作",
+              "1": "正常工作"
+            },
+            "2": {
+              "key": "RangeTooSmall",
+              "description": "地图加载范围",
+              "0": "小于100米",
+              "1": "大于100米"
+            },
+            "3": {
+              "key": "LackOfBoundary",
+              "description": "RoadBoundary状态",
+              "0": "有缺失",
+              "1": "无缺失"
+            },
+            "4": {
+              "key": "LackOfLaneAttr",
+              "description": "Lane属性状态",
+              "0": "有错误",
+              "1": "无错误"
+            },
+            "5": {
+              "key": "InODD",
+              "description": "不在可行使区域",
+              "0": "不在",
+              "1": "正常"
+            },
+            "6": {
+              "key": "VerifyMapData",
+              "description": "地图严重现势性问题",
+              "0": "存在",
+              "1": "不存在"
+            },
+            "7": {
+              "key": "DecMapLessLimitDis",
+              "description": "规划图层前方加载地图范围",
+              "0": "加载范围不正常",
+              "1": "加载范围正常"
+            },
+            "31": {
+              "key": "DegrationToL2",
+              "description": "切换L2建议",
+              "0": "建议",
+              "1": "不建议"
+            }
+          },
+          "statuMapping":{
+              "1": true,
+              "0": false
+          }
+      }
+  ]
+}
+]

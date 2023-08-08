@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zhito Webvis.</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="description" content="ECharts 4.x for Vue.js 2.x.">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="icon" href="_media/favicon.ico" mce_href="_media/favicon.ico" type="image/x-icon"/>
+  <link rel="stylesheet" href="css/vue.css"/>
+  <!-- inject css file -->
+  <link rel="stylesheet" href="css/vuep.css"/>
+  <link rel="stylesheet" href="css/vue_cover.css">
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'Zhito Webvis',
+      // repo: 'vueblocks/ve-charts', // connect to github
+      loadSidebar: true,
+      coverpage: false,
+      themeColor: '#3c78eb',
+      // homepage: 'base-quickstart.md',
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: {
+          '/': '搜索',
+          '/en': 'Type to search'
+        },
+        noData: {
+          '/': '找不到结果',
+          '/en': 'No Results'
+        },
+        depth: 2
+      },
+      mergeNavbar: true
+    }
+
+    // remove sidebar's title and add my logo
+    let interval = setInterval(function () {
+      if (document.getElementsByTagName('aside')[0]) {
+        let parent = document.getElementsByTagName('aside')[0]
+        parent.removeChild(parent.getElementsByTagName('h1')[0])
+        let div = document.createElement('div')
+        div.setAttribute('class', 'logo')
+        let a = document.createElement('a')
+        a.setAttribute('href', 'https://gitlab.zhito.com/xuhuijun/zhitov.git')
+        let img = document.createElement('img')
+        img.setAttribute('src', './resource/logo_pic.png')
+        img.style.maxWidth = "60%";
+        let titleImg = document.createElement('img')
+        titleImg.setAttribute('src', './resource/logo_text.png')
+        a.appendChild(img)
+        div.appendChild(a)
+        parent.prepend(div)
+        div.appendChild(titleImg)
+        clearInterval(interval)
+      }
+    }, 0)
+
+    window.addEventListener('scroll', winScroll, false)
+    function winScroll (e) {
+      let coverNav = document.getElementById('cover-nav')
+      let scrollTop = document.documentElement.scrollTop
+      if (coverNav) {
+        if (scrollTop > 96) {
+          coverNav.style.display = 'none'
+        } else {
+          coverNav.style.display = 'block'
+        }
+      }
+    }
+  </script>
+  <!-- inject js file -->
+  <script src="lib/docsify.min.js"></script>
+  <script src="lib/vue.min.js"></script>
+  <script src="lib/vuep.min.js"></script>
+  <script src="lib/search.js"></script>
+
+  </body>
+</html>

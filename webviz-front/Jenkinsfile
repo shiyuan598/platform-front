@@ -1,0 +1,172 @@
+def DownloadBackend(version) {
+    rtDownload (
+        serverId: 'artifactory',
+        spec: """{
+            "files": [
+                {
+                    "pattern": "zhito-dev-local/webviz/backend/webviz_backend-${version}-linux-x86_tar_gz",
+                    "target": "./",
+                    "flat": "true"
+                }
+            ]
+        }"""
+    )
+}
+
+pipeline {
+    agent {
+        // docker 'node:6.3'
+        label "zhito-ros1-slave"
+    }
+
+
+
+    environment {
+        git_tag = sh(returnStdout: true,script: 'bash scripts/get_git_tag.sh').trim()
+        build_statu = sh(returnStdout: true,script: 'bash scripts/get_build_statu.sh').trim() // release normal
+        backend_version = "v1.14.1"
+        linux_out_dir = 'linux_out'
+        linux_build_dir = 'linux_build'
+        linux_platform = 'X86'
+        qnx_platform = 'V3NA'
+        qnx_out_dir = 'qnx_out'
+        qnx_build_dir = 'qnx_build'
+        type = 'Release'
+        project = 'webviz'
+        version = '1.0.0'
+    }
+
+    triggers {
+        gitlab(
+            triggerOnPush: true,
+            triggerOnMergeRequest: true,
+            branchFilterType: 'All',
+            addVoteOnMergeRequest: true)
+    }
+
+    // triggers {
+    //     GenericTrigger (
+    //             // 构建时的标题
+    //             causeString: 'Triggered by $ref',
+    //             // 获取POST参数中的变量，key指的是变量名，通过$ref来访问对应的值，value指的是JSON匹配值（参考Jmeter的JSON提取器）
+    //             // ref指的是推送的分支，格式如：refs/heads/master
+    //             genericVariables: [[key: 'ref', value: '$.ref']],
+    //             // 打印获取的变量的key-value，此处会打印如：ref=refs/heads/master
+    //             printContributedVariables: true,
+    //             // 打印POST传递的参数
+    //             printPostContent: true,
+    //             // regexpFilterExpression与regexpFilterExpression成对使用
+    //             // 当两者相等时，会触发对应分支的构建
+    //             regexpFilterExpression: '^refs/heads/(master|production)$',
+    //             regexpFilterText: '$ref',
+    //             // 与webhook中配置的token参数值一致
+    //             token: 'webviz-frontend'
+    //     )
+    // }
+
+    stages {
+        stage('construct build info') {
+             steps {
+                rtBuildInfo (
+                    captureEnv: true
+                )
+                script{
+                    sh 'echo "branch name $BRANCH_NAME"'
+                    sh 'echo "tag name $TAG_NAME"'
+                    sh 'echo $(git describe --tags)'
+                }
+            }
+        }
+
+        stage('install nodejs&&') {
+            steps {
+                script {
+                    sh './scripts/install_nodejs.sh'
+                }
+
+            }
+        }
+
+        stage('git lfs pull') {
+            steps {
+
+                script {
+                withCredentials([
+                    usernamePassword(credentialsId: 'zhouyiwen',
+                    usernameVariable: 'username',
+                    passwordVariable: 'password')
+                ]) {
+                    sh 'git config --global credential.helper cache'
+                    sh 'export https_proxy=http://172.16.12.65:1082; git lfs pull https://xuhuijun:abcd123$$@gitlab.zhito.com/ai/webviz-frontend.git'
+                }
+                }
+
+            }
+        }
+
+
+        stage('analysis') {
+            when {
+                environment name: 'build_statu', value: 'release-'
+            }
+            steps{
+                script {
+                    def sonarHome = tool name: 'sonarqube-scanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv('sonarqube') {
+                        sh "${sonarHome}/bin/sonar-scanner "
+                    }
+                }
+            }
+        }
+
+        stage('build') {
+            steps {
+              sh "bash ./scripts/build_web.sh"
+            }
+        }
+
+        // stage('analysis'){
+        //     steps{
+        //         script {
+        //             def sonarHome = tool name: 'sonarqube-scanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'
+        //             withSonarQubeEnv('sonarqube') {
+        //                 sh "${sonarHome}/bin/sonar-scanner " +
+        //                 "-Dsonar.projectKey=map " +
+        //                 "-Dsonar.projectName=${env.JOB_NAME} " +
+        //                 "-Dsonar.cfamily.build-wrapper-output=bw-output " +
+        //                 "-Dsonar.exclusions=${linux_build_dir}/**,${qnx_out_dir}/**,${qnx_build_dir}/**,thirdparty/**,jenkins/**,${linux_out_dir}/**,doc/**,data/**,pack/**,**/*test.cc " +
+        //                 "-Dsonar.cfamily.threads=16 "
+        //             }
+        //         }
+        //     }
+        // }
+
+        stage ('upload') {
+            when {
+                environment name: 'build_statu', value: 'release'
+            }
+            steps {
+                DownloadBackend("${env.backend_version}")
+                script {
+                    sh "bash ./scripts/release_web.sh"
+                }
+
+                rtUpload (
+                    serverId: 'artifactory',
+                    spec: '''{
+                        "files": [
+                            {
+                            "pattern": "./zhito2ros-*_tar_gz",
+                            "target": "zhito-dev-local/webviz/",
+                            "props": "version=${GIT_TAG};module=${project}"
+                            }
+                        ]
+                    }'''
+                )
+                rtPublishBuildInfo (
+                    serverId: 'artifactory'
+                )
+            }
+        }
+    }
+}

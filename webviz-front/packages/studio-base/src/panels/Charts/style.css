@@ -1,0 +1,20 @@
+.charts-container {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-between;
+}
+.chart {
+    flex: 1 0 350px;
+    min-width: 350px;
+    max-width: 600px;
+    min-height: 240px;
+    max-height: 290px;
+}
+.path-chart {
+    min-height: 310px;
+    max-height: 360px;
+}

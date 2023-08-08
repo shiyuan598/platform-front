@@ -1,0 +1,6 @@
+{
+  "name": "@zhito/ros2-msg",
+  "version": "1.0.0",
+  "types": "index.d.ts",
+  "main": "index.js"
+}

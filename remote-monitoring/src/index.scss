@@ -1,0 +1,73 @@
+@import "antd/dist/reset.css";
+body {
+    margin: 0;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+}
+
+code {
+    font-family: Roboto, source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.app {
+    height: 100vh;
+    width: 100vw;
+    min-width: 1440px;
+    color: #101010;
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    main {
+        height: calc(100% - 60px);
+        display: flex;
+        background-color: #f9faff;
+    }
+
+    .content {
+        flex: 1;
+        margin: 25px 30px 0;
+        background-color: #f5f6f9;
+        overflow: auto;
+    }
+}
+
+/* 滚动条 */
+*::-webkit-scrollbar {
+    height: 6px;
+    background-color: #efefef;
+    width: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    background-color: #e2e2e2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.clearfix::after {
+    content: "";
+    height: 0;
+    display: block;
+    overflow: hidden;
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}

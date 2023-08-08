@@ -1,0 +1,87 @@
+.container {
+    display: flex;
+    height: 100%;
+
+    .main {
+        flex: 1;
+        display: flex;
+        flex-flow: column;
+
+        .mapContainer {
+            height: calc(100% - 16px);
+            position: relative;
+            margin-top: 16px;
+            flex: 1;
+            border-radius: 2px;
+            border: 1px solid #303030;
+            overflow: hidden;
+            
+            .bmap-container {
+                height: 100%;
+                background-image: none !important;
+            }
+
+            .map-mask {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: #141414;
+                z-index: 12;
+            }
+
+            .map-mask-hide {
+                display: none;
+            }
+        }
+    }
+
+    .notice {
+        margin-left: 16px;
+        width: 320px;
+        padding: 10px 15px;
+        background-color: #141414;
+        border-radius: 2px;
+        border: 1px solid #303030;
+        overflow: auto;
+
+        .header {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+
+            .btn {
+                font-size: 20px;
+                margin-left: auto;
+                cursor: pointer;
+            }
+        }
+
+        :global(.list-content) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            :global(.btn) {
+                padding: 5px;
+                cursor: pointer;
+                &:hover {
+                    color: #ff7875;
+                }
+            }
+        }
+    }
+}
+
+.site-statistic-demo-card {
+    display: flex;
+
+    :global(.ant-card) {
+        flex: 1;
+    }
+
+    :global(.ant-card)+ :global(.ant-card) {
+        margin-left: 16px;
+    }
+}
